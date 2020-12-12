@@ -6,11 +6,11 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
 
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-
     - name: Checkout
       uses: actions/checkout@v2
+
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
 
     - name: Cache
       uses: actions/cache@v2
@@ -22,7 +22,7 @@ jobs:
     - name: Bundle install
       run: |
         bundle config path vendor/bundle
-        bunndle install --jobs 8 --retry 3
+        bundle install --jobs 8 --retry 3
     - name: build image
       run: DOCKER_BUILDKIT=1 docker build --target=test -t test . --file Dockerfile
 
