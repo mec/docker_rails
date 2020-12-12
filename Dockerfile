@@ -7,11 +7,8 @@ RUN apk add --update \
   build-base \
   libxml2-dev \
   libxslt-dev \
-  sqlite-dev \
-  sqlite-libs \
-  sqlite \
   tzdata \
-  yarn
+  postgresql-dev
 
 RUN gem install bundler -v 2.1.4
 RUN gem install rake -v 13.0.1
