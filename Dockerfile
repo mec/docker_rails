@@ -7,6 +7,5 @@ RUN gem install bundler -v 2.1.4
 
 COPY . ./
 
-RUN bundle config path ./vendor/bundle
-RUN ls ./vendor/bundle
+RUN bundle config path vendor/bundle
 RUN bundle install
