@@ -13,7 +13,7 @@ RUN apk add --update \
 RUN gem install bundler -v 2.1.4
 RUN gem install rake -v 13.0.1
 
-COPY Gemfile Gemfile.lock /app
+COPY . ./
 RUN bundle config path vendor/bundle
 RUN bundle config set without development test
 RUN bundle install
@@ -28,7 +28,6 @@ RUN bundle config set with test
 
 RUN bundle install
 
-COPY . ./
 RUN RAILS_ENV="test"
 
 CMD ["bundle", "exec", "rails", "test"]
