@@ -1,4 +1,4 @@
-FROM ruby:2.6.3-alpine AS builder
+FROM ruby:2.6.5-alpine AS builder
 
 RUN mkdir -p /app
 WORKDIR /app
