@@ -9,6 +9,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Cache
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: bundle-
+
     - name: build image
       run: DOCKER_BUILDKIT=1 docker build --target=test -t test . --file Dockerfile
 
