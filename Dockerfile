@@ -13,8 +13,8 @@ RUN apk add --update \
 RUN gem install bundler -v 2.1.4
 RUN gem install rake -v 13.0.1
 
-COPY . ./
-COPY ./vendor/bundle ./vendor/bundle
+COPY vendor/bundle ./vendor/bundle
+COPy Gemfile Gemfile.lock ./
 RUN bundle config path vendor/bundle
 RUN bundle install
 
