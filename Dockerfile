@@ -20,9 +20,6 @@ COPY Gemfile Gemfile.lock /app
 RUN bundle config set without development test
 RUN bundle install
 
-COPY package.json yarn.lock /app
-RUN yarn install
-
 FROM builder AS test
 
 RUN mkdir -p /app
