@@ -10,5 +10,5 @@ jobs:
       uses: actions/checkout@v2
 
     - name: build and test code
-      run: DOCKER_BUILDKIT=1 build .
+      run: DOCKER_BUILDKIT=1 docker build . --file Dockerfile
 
