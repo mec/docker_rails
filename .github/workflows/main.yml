@@ -24,7 +24,7 @@ jobs:
         bundle config path vendor/bundle
         bundle install --jobs 8 --retry 3
     - name: build image
-      run: DOCKER_BUILDKIT=1 docker build --target=test -t test . --file Dockerfile
+      run: DOCKER_BUILDKIT=1 docker build --tag test --file Dockerfile .
 
     - name: run image
       run: docker run test
