@@ -1,51 +1,13 @@
-FROM ruby:2.6.5-alpine AS builder
+FROM ubuntu:18.04
 
 RUN mkdir -p /app
 WORKDIR /app
 
-RUN apk add --update \
-  build-base \
-  libxml2-dev \
-  libxslt-dev \
-  tzdata \
-  postgresql-dev
+RUN apt-get update && apt-get install -y build-base
 
 RUN gem install bundler -v 2.1.4
-RUN gem install rake -v 13.0.1
-
-COPY vendor/bundle ./vendor/bundle
-COPy Gemfile Gemfile.lock ./
-RUN bundle config path vendor/bundle
-RUN bundle install
-
-FROM builder AS test
-
-RUN mkdir -p /app
-WORKDIR /app
-
-RUN bundle config unset without
-RUN bundle config set with test
-
-RUN bundle install
-
-RUN RAILS_ENV="test"
-
-CMD ["bundle", "exec", "rails", "test"]
-
-FROM ruby:2.6.3-alpine
-
-RUN mkdir -p /app
-WORKDIR /app
-
-RUN apk add --update \
-  tzdata \
-  sqlite-libs \
-  sqlite
-
-COPY --from=builder /usr/local/bundle /usr/local/bundle
 
 COPY . ./
 
-RUN RAILS_ENV="production"
-
-CMD ["bundle", "exec", "puma"]
+RUN bundle config path ./vendor/bundle
+RUN bundle install
