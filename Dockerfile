@@ -14,8 +14,8 @@ RUN gem install bundler -v 2.1.4
 RUN gem install rake -v 13.0.1
 
 COPY . ./
+COPY ./vendor/bundle ./vendor/bundle
 RUN bundle config path vendor/bundle
-RUN bundle config set without development test
 RUN bundle install
 
 FROM builder AS test
